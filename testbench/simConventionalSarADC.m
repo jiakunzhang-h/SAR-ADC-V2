@@ -32,5 +32,5 @@ disp( adcDynamicPerformanceMetrics.sndr )
 obj = plotAdcDynamicSimulationResult( p, adcDynamicPerformanceMetrics );
 
 %% export plots
-drawing = 'drawing/adc-dynamic-spectrum.png';
+drawing = 'drawing/adc-spectrum.png';
 exportgraphics(obj, drawing);
