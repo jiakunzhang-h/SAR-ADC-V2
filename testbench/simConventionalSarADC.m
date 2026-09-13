@@ -13,23 +13,23 @@ conversionResult = nan( p.fftLen, 1 );
 
 %% generate CDAC array
 
-  weightCDAC = 2.^(p.adcResolution-1:-1:0);
-  capArray = generateCDAC(weightCDAC, 50e-15,p.mismatchStd);
+  weightCDAC = 2.^( p.adcResolution-1:-1:0 );
+  capArray = generateCDAC( weightCDAC, 50e-15,p.mismatchStd );
 
 %% run simulation
 for iSample = 1 : p.fftLen
   sample = p.Vin( iSample );
-  conversionResult( iSample ) = cbwSarADC(sample, p, capArray);
+  conversionResult( iSample ) = cbwSarADC( sample, p, capArray );
 end
 
 %% process simulation data
 
-adcDynamicPerformanceMetrics = processAdcData(p,conversionResult);
-disp(adcDynamicPerformanceMetrics.enob);
-
+adcDynamicPerformanceMetrics = processAdcData( p,conversionResult );
+disp( adcDynamicPerformanceMetrics.enob );
+disp( adcDynamicPerformanceMetrics.sndr )
 %% plot simulation results
 
-obj = plotAdcDynamicSimulationResult(p, adcDynamicPerformanceMetrics);
+obj = plotAdcDynamicSimulationResult( p, adcDynamicPerformanceMetrics );
 
 %% export plots
 drawing = 'drawing/adc-dynamic-spectrum.png';

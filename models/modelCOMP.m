@@ -1,5 +1,5 @@
-function Vout=modelCOMP(Vp,Vn,com_vos,com_noise)
-%% comparator，Vp=Vcdac
+function Vout = modelCOMP( Vp,Vn,com_vos,com_noise )
+%% Comparator，Vp = Vcdac
 V_noise = randn * com_noise;
 if Vp > Vn + com_vos + V_noise
   Vout = 1;

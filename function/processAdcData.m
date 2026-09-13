@@ -16,19 +16,19 @@ function adcDynamicPerformanceMetrics = processAdcData(p,conversionResult)
 
   %% calculate ENOB
 
-  enob = (sndr - 1.76) / 6.02;
+  enob = ( sndr - 1.76 ) / 6.02;
 
   %% generate frequency axis
 
-  frequency = (0:p.fftLen/2-1).' * p.fs / p.fftLen;
+  frequency = ( 0:p.fftLen/2-1 ).' * p.fs / p.fftLen;
 
   %% convert spectrum to dB
 
-  spectrumDb = dbv(spectrumSingle);
+  spectrumDb = dbv( spectrumSingle );
 
   %% normalize spectrum for display
 
-  spectrumDb = spectrumDb - max(spectrumDb);
+  spectrumDb = spectrumDb - max( spectrumDb );
 
   %% store results
 

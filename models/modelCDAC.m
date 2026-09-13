@@ -1,4 +1,4 @@
-function Vdac = modelCDAC(Vin,Vref,capArray,capPar,digitalWord)
+function Vdac = modelCDAC( Vin,Vref,capArray,capPar,digitalWord )
 
 %% calculate Vdac
 
