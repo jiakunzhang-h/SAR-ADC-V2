@@ -11,13 +11,17 @@ p = configDynamicTest();
 
 conversionResult = nan( p.fftLen, 1 );
 
+%% generate samples
+
+samples = genSamples( p );
+
 %% generate CDAC array
 
-capArray = generateCDAC( p, p.unitCap,p.mismatchStd );
+capArray = generateCDAC( p );
 
 %% run simulation
 for iSample = 1 : p.fftLen
-  sample = p.Vin( iSample );
+  sample = samples.data( iSample );
   conversionResult( iSample ) = cbwSarADC( sample , p , capArray );
 end
 

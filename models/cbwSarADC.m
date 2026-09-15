@@ -12,19 +12,19 @@ function conversionResult = cbwSarADC( sample , p , capArray )
     digitalWord( iCycle ) = 1;
 
     %% CDAC
-    vCompIn = modelCDAC( sample , p.Vref , capArray , 0 , digitalWord );
+    vCompIn = cdac( sample , p , capArray , digitalWord );
 
     %% Comparator
-    compVout = modelCOMP( vCompIn , 0 , 0 , 0 );
+    compVout = comparator( vCompIn , 0 , p );
 
     %% SAR Logic
-    digitalWord = modelSarLogic( digitalWord , iCycle , compVout ); 
+    digitalWord = sarLogic( digitalWord , iCycle , compVout ); 
 
   end
 
   %% binary word transforms to decimal code
 
-  digitalWeight = 2.^( p.adcResolution-1 : -1 : 0 );
+  digitalWeight = 2.^( p.adcResolution - 1 : -1 : 0 );
   conversionResult = digitalWord * digitalWeight.';
 
 end
