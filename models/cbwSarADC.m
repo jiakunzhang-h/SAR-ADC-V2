@@ -1,30 +1,30 @@
-function conversionResult = cbwSarADC( sample, p,capArray )
+function conversionResult = cbwSarADC( sample , p , capArray )
 
-%% SAR logic initialization
+  %% SAR logic initialization
 
-  digitalWord = zeros( 1, p.adcResolution );
+  digitalWord = zeros( 1 , p.adcResolution );
 
-%% binary search
+  %% binary search
 
-  for iCycle = 1:p.adcResolution
+  for iCycle = 1 : p.adcResolution
 
-%% Trial current bit
+    %% Trial current bit
     digitalWord( iCycle ) = 1;
 
-%% CDAC
-    vCompIn = modelCDAC( sample,p.Vref,capArray,0,digitalWord );
+    %% CDAC
+    vCompIn = modelCDAC( sample , p.Vref , capArray , 0 , digitalWord );
 
-%% Comparator
-    compVout = modelCOMP( vCompIn,0,0,0 );
+    %% Comparator
+    compVout = modelCOMP( vCompIn , 0 , 0 , 0 );
 
-%% SAR Logic
-    digitalWord = modelSarLogic( digitalWord,iCycle,compVout );
+    %% SAR Logic
+    digitalWord = modelSarLogic( digitalWord , iCycle , compVout ); 
 
   end
 
-%% binary word transforms to decimal code
+  %% binary word transforms to decimal code
 
-  digitalWeight = 2.^( p.adcResolution-1:-1:0 );
+  digitalWeight = 2.^( p.adcResolution-1 : -1 : 0 );
   conversionResult = digitalWord * digitalWeight.';
 
 end

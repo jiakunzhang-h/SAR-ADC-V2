@@ -1,8 +1,8 @@
-function Vdac = modelCDAC( Vin,Vref,capArray,capPar,digitalWord )
+function Vdac = modelCDAC( Vin , Vref , capArray , capPar , digitalWord )
 
-%% calculate Vdac
+  %% calculate Vdac
 
-capTotal = sum(capArray);
-H = capArray(1:end-1) * digitalWord.' / (capTotal + capPar );
-Vdac = -Vin + Vref * H;
+  capTotal = sum( capArray );
+  H = capArray( 1 : end-1 ) * digitalWord.' / ( capTotal + capPar );
+  Vdac = -Vin + Vref * H;
 end
