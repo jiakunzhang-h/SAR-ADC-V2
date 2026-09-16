@@ -3,7 +3,7 @@ function multiFreqAnalysisObj = plotAdcMultiFrequencyDynamicResult( p, sndrResul
   %% plot FFT
 
   multiFreqAnalysisObj = figure;
-  plot( p.testMultipleFrequency / 1e6, sndrResult, 'b', 'LineWidth', 2.5 );
+  plot( p.inputbin * p.fs / p.fftLen / 1e6, sndrResult, 'b', 'LineWidth', 2.5 );
   xlabel( 'Frequency (MHz)' );
   ylabel( 'Magnitude (dB)' );
   title( 'ADC SNDR versus input frequency ' );

@@ -7,7 +7,7 @@ function p = configDynamicTest
   p.Vref = 1.2;
   p.fs = 10e6;
   p.fin = [];
-  p.testMultipleFrequency = [ 0.1e6, 0.5e6, 1e6, 2e6, 5e6 ];
+  p.testInputBin = [ 10, 51, 103, 205, 409 ];
   p.VDD = 1.2;
 
   %% CDAC specification

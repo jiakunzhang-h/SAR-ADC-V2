@@ -13,8 +13,7 @@ p = configDynamicTest();
 
 conversionResult = nan( p.fftLen, p.adcResolution );
 decimalResult = nan( p.fftLen, 1 );
-sndrResult = nan( length(p.testMultipleFrequency), 1 );
-enobResult = nan( length(p.testMultipleFrequency), 1 );
+sndrResult = nan( length(p.testInputBin), 1 );
 
 %% generate input frequency
 
@@ -53,14 +52,14 @@ exportgraphics(obj, drawing);
 
 %% multiple frequency test
 
-for iFrequency = 1 : length( p.testMultipleFrequency )
+for iInputbin = 1 : length( p.testInputBin )
 
-  p.fin = p.testMultipleFrequency( iFrequency );
+  p.inputbin = p.testInputBin( iInputbin );
 
   %% generate input frequency
 
-  [p.fin, p.inputbin] = genInputFrequency( p );
-
+  p.fin = p.inputbin * p.fs / p.fftLen;
+  
   %% generate samples
 
   samples = genSamples( p );
@@ -80,7 +79,7 @@ for iFrequency = 1 : length( p.testMultipleFrequency )
   %% process simulation data
 
   adcDynamicPerformanceMetrics = processAdcData( p, decimalResult );
-  sndrResult( iFrequency ) = adcDynamicPerformanceMetrics.sndr;
+  sndrResult( iInputbin ) = adcDynamicPerformanceMetrics.sndr;
 
 end
 
@@ -90,5 +89,5 @@ multiFreqAnalysisObj = plotAdcMultiFrequencyDynamicResult( p, sndrResult );
 
 %% export plots
 
-drawing = 'ADC SNDR versus input frequency.png';
+drawing = 'drawing/ADC SNDR versus input frequency.png';
 exportgraphics(multiFreqAnalysisObj, drawing);
