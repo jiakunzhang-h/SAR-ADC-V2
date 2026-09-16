@@ -24,5 +24,5 @@ function conversionResult = cbwSarADC( sample, p, capArray )
 
   %% output
   conversionResult = digitalWord;
-  
+
 end

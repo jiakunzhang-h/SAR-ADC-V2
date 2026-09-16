@@ -1,6 +1,6 @@
 function capArray = generateCDAC( p )
-  
-  %% generate weight CDAC 
+
+  %% generate weight CDAC
 
   weightCDAC = 2 .^ ( p.adcResolution - 1 : -1 : 0 );
 

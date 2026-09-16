@@ -11,7 +11,7 @@ function p = configDynamicTest
   p.unitCap = 50e-15;
   p.mismatchStd = 0;
   p.capPar = 0;
-  %% comparotor specification
+  %% Comparator specification
   p.compVos = 0;
   p.compNoise = 0;
 end

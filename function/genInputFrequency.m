@@ -1,7 +1,7 @@
 function [inputFrequency, inputBin] = genInputFrequency( p )
 
   %% use specified input frequency
-  if ~isempty(p.fin)
+  if ~isempty( p.fin )
     inputFrequency = p.fin;
     inputBinExact = inputFrequency / p.fs * p.fftLen;
     if abs( inputBinExact - round( inputBinExact ) ) > 1e-12
@@ -10,7 +10,7 @@ function [inputFrequency, inputBin] = genInputFrequency( p )
     inputBin = round( inputBinExact );
     return
   end
-  
+
   %% generate random input frequency
 
   randomBinLen = 1 : floor( p.fftLen / 2 ) ;
