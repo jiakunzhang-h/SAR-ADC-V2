@@ -1,6 +1,7 @@
 function [inputFrequency, inputBin] = genInputFrequency( p )
 
   %% use specified input frequency
+  
   if ~isempty( p.fin )
     inputFrequency = p.fin;
     inputBinExact = inputFrequency / p.fs * p.fftLen;
@@ -18,4 +19,5 @@ function [inputFrequency, inputBin] = genInputFrequency( p )
   randomIndex = randi( numel( coherentBin ) );
   inputBin = coherentBin( randomIndex );
   inputFrequency = p.fs * inputBin / p.fftLen;
+
 end

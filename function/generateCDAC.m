@@ -15,4 +15,5 @@ function capArray = generateCDAC( p )
   %% actual capacitor array
 
   capArray = weightArray .* unitCapArray;
+  
 end
