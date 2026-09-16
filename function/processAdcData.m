@@ -1,5 +1,7 @@
 function adcDynamicPerformanceMetrics = processAdcData( p, conversionResult )
+
   %% delete DC component
+  
   fftSample = conversionResult - mean( conversionResult );
 
   %% calculate FFT
