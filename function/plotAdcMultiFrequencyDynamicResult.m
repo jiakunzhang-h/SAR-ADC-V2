@@ -3,15 +3,10 @@ function multiFreqAnalysisObj = plotAdcMultiFrequencyDynamicResult( p, sndrResul
   %% plot FFT
 
   multiFreqAnalysisObj = figure;
-  plot( p.testInputBin * p.fs / p.fftLen / 1e6, sndrResult, 'b', 'LineWidth', 2.5 );
+  plot( p.testInputBin(:) * p.fs / p.fftLen / 1e6, sndrResult, 'b', 'LineWidth', 2.5 );
   xlabel( 'Frequency (MHz)' );
   ylabel( 'SNDR (dB)' );
   title( 'ADC SNDR versus input frequency ' );
   grid on;
 
-  %% limit the noise floor
-
-  noiseFloor = - ( 6.02 * p.adcResolution + 1.76 ) - 10 * log10( p.fftLen / 2 );
-  ylim( [ noiseFloor - 10, 5 ] );
-  
 end

@@ -59,7 +59,7 @@ for iInputbin = 1 : length( p.testInputBin )
   %% generate input frequency
 
   p.fin = p.inputbin * p.fs / p.fftLen;
-  
+
   %% generate samples
 
   samples = genSamples( p );
