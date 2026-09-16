@@ -6,7 +6,7 @@ function capArray = generateCDAC( p )
 
   %% include dummy capacitor
 
-  weightArray = [weightCDAC , 1];
+  weightArray = [weightCDAC, 1];
 
   %% generate capacitor mismatch
 

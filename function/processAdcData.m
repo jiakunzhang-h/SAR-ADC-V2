@@ -1,10 +1,10 @@
 function adcDynamicPerformanceMetrics = processAdcData( p, conversionResult )
   %% delete DC component
-  fftSapmple = conversionResult - mean( conversionResult );
+  fftSample = conversionResult - mean( conversionResult );
 
   %% calculate FFT
 
-  spectrum = fft( fftSapmple );
+  spectrum = fft( fftSample );
 
   %% obtain single-sided spectrum
 
