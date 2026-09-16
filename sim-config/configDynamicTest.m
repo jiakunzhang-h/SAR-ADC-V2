@@ -5,8 +5,7 @@ function p = configDynamicTest
   p.fftLen = 1024;
   p.Vref = 1.2;
   p.fs = 10e6;
-  p.fin = p.fs * 7 / p.fftLen;
-  p.inputbin = 7;
+  p.fin = [];
   p.VDD = 1.2;
   %% CDAC specification
   p.unitCap = 50e-15;
