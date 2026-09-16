@@ -1,4 +1,4 @@
-function vOut = comparator( vP , vN , p )
+function vOut = comparator( vP, vN, p )
   %% Comparator，Vp = Vcdac
   vNoise = randn * p.compNoise;
   if vP > vN + p.compVos + vNoise

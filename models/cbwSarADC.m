@@ -1,8 +1,8 @@
-function conversionResult = cbwSarADC( sample , p , capArray )
+function conversionResult = cbwSarADC( sample, p, capArray )
 
   %% SAR logic initialization
 
-  digitalWord = zeros( 1 , p.adcResolution );
+  digitalWord = zeros( 1, p.adcResolution );
 
   %% binary search
 
@@ -12,13 +12,13 @@ function conversionResult = cbwSarADC( sample , p , capArray )
     digitalWord( iCycle ) = 1;
 
     %% CDAC
-    vCompIn = cdac( sample , p , capArray , digitalWord );
+    vCompIn = cdac( sample, p, capArray, digitalWord );
 
     %% Comparator
-    compVout = comparator( vCompIn , 0 , p );
+    compVout = comparator( vCompIn, 0, p );
 
     %% SAR Logic
-    digitalWord = sarLogic( digitalWord , iCycle , compVout ); 
+    digitalWord = sarLogic( digitalWord, iCycle, compVout );
 
   end
 

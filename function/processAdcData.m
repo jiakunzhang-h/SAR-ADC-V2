@@ -1,18 +1,18 @@
-function adcDynamicPerformanceMetrics = processAdcData( p , conversionResult )
+function adcDynamicPerformanceMetrics = processAdcData( p, conversionResult )
   %% delete DC component
-  x = conversionResult - mean( conversionResult );
+  fftSapmple = conversionResult - mean( conversionResult );
 
   %% calculate FFT
 
-  spectrum = fft(x);
+  spectrum = fft( fftSapmple );
 
   %% obtain single-sided spectrum
 
-  spectrumSingle = spectrum( 1 : p.fftLen/2 );
+  spectrumSingle = spectrum( 1 : p.fftLen / 2 );
 
   %% calculate SNDR
 
-  sndr = calculateSNR( spectrumSingle , p.inputbin , 0 );
+  sndr = calculateSNR( spectrumSingle, p.inputbin, 0 );
 
   %% calculate ENOB
 
@@ -20,7 +20,7 @@ function adcDynamicPerformanceMetrics = processAdcData( p , conversionResult )
 
   %% generate frequency axis
 
-  frequency = ( 0 : p.fftLen/2-1 ).' * p.fs / p.fftLen;
+  frequency = ( 0 : p.fftLen / 2 - 1 ).' * p.fs / p.fftLen;
 
   %% convert spectrum to dB
 

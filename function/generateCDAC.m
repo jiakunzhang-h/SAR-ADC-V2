@@ -10,7 +10,7 @@ function capArray = generateCDAC( p )
 
   %% generate capacitor mismatch
 
-  unitCapArray = p.unitCap * ( 1 + randn(size(weightArray)) * p.mismatchStd );
+  unitCapArray = p.unitCap * ( 1 + randn( size( weightArray ) ) * p.mismatchStd );
 
   %% actual capacitor array
 
