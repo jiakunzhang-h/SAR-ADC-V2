@@ -8,12 +8,15 @@ function capArray = generateCDAC( p )
 
   weightArray = [weightCDAC, 1];
 
-  %% generate capacitor mismatch
+  %% initialize capacitor array
 
-  unitCapArray = p.unitCap * ( 1 + randn( size( weightArray ) ) * p.mismatchStd );
+  capArray = nan( size( weightArray ) );
 
   %% actual capacitor array
 
-  capArray = weightArray .* unitCapArray;
-  
+  for iCap = 1 : length( weightArray )
+    numUnitCap = weightArray( iCap );
+    capArray(iCap) = normrnd(numUnitCap * p.unitCap, sqrt( numUnitCap ) * p.mismatchStd * p.unitCap / p.numOfSmallestCap );
+  end
+
 end

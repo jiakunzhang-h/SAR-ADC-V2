@@ -1,4 +1,4 @@
-function adcDynamicPerformanceMetrics = processAdcData( p, conversionResult )
+function adcDynamicPerformanceMetrics = processAdcData( p, samples, conversionResult )
 
   %% delete DC component
   
@@ -14,7 +14,7 @@ function adcDynamicPerformanceMetrics = processAdcData( p, conversionResult )
 
   %% calculate SNDR
 
-  sndr = calculateSNR( spectrumSingle, p.inputbin, 0 );
+  sndr = calculateSNR( spectrumSingle, samples.toneBin, 0 );
 
   %% calculate ENOB
 
