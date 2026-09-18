@@ -5,7 +5,7 @@ function obj = plotAdcDynamicSimulationResult( p, adcDynamicPerformanceMetrics )
   obj = figure;
   plot( adcDynamicPerformanceMetrics.frequency / 1e6, adcDynamicPerformanceMetrics.spectrumDb, 'b', 'LineWidth', 2.5 );
   xlabel( 'Frequency (MHz)' );
-  ylabel( 'Magnitude (dB)' );
+  ylabel( 'Magnitude (dBFS)' );
   text( max( adcDynamicPerformanceMetrics.frequency / 1e6 ) * 0.7, -20, sprintf( 'SNDR = %.2f dB\nENOB = %.2f bit', adcDynamicPerformanceMetrics.sndr, adcDynamicPerformanceMetrics.enob ), 'FontWeight', 'bold' );
   title( 'ADC frequency spectrum ' );
   grid on;

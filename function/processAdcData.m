@@ -27,11 +27,11 @@ function adcDynamicPerformanceMetrics = processAdcData( p, samples, conversionRe
   %% normalize spectrum for display
 
   fullScale = 2 .^ ( p.adcResolution - 1 );
-  spectrumNormalized =spectrumSingle / ( p.fftLen / 2 ) / fullScale;
+  spectrumNormalized = spectrumSingle / ( p.fftLen / 2 ) / fullScale;
 
   %% convert spectrum to dB
 
-  spectrumDb =dbv( spectrumNormalized );
+  spectrumDb = dbv( spectrumNormalized );
 
   %% store results
 
