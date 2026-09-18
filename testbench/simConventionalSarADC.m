@@ -12,7 +12,7 @@ p = configDynamicTest();
 %% allocate storage for simulation data
 
 conversionResult = nan( p.fftLen, p.adcResolution );
-decimalResult = nan( p.fftLen, 1 );
+idealDacOutput = nan( p.fftLen, 1 );
 sndrResult = nan( length(p.testInputBin), 1 );
 
 %% generate input frequency
@@ -32,12 +32,12 @@ capArray = generateCDAC( p );
 for iSample = 1 : p.fftLen
   sample = samples.data( iSample );
   conversionResult( iSample, : ) = cbwSarADC( sample, p, capArray );
-  decimalResult( iSample ) = idealDAC( conversionResult( iSample, : ), p );
+  idealDacOutput( iSample ) = idealDAC( conversionResult( iSample, : ), p );
 end
 
 %% process simulation data
 
-adcDynamicPerformanceMetrics = processAdcData( p, decimalResult );
+adcDynamicPerformanceMetrics = processAdcData( p, idealDacOutput );
 disp( adcDynamicPerformanceMetrics.enob );
 disp( adcDynamicPerformanceMetrics.sndr );
 
@@ -73,12 +73,12 @@ for iInputbin = 1 : length( p.testInputBin )
   for iSample = 1 : p.fftLen
     sample = samples.data( iSample );
     conversionResult( iSample, : ) = cbwSarADC( sample, p, capArray );
-    decimalResult( iSample ) = idealDAC( conversionResult( iSample, : ), p );
+    idealDacOutput( iSample ) = idealDAC( conversionResult( iSample, : ), p );
   end
 
   %% process simulation data
 
-  adcDynamicPerformanceMetrics = processAdcData( p, decimalResult );
+  adcDynamicPerformanceMetrics = processAdcData( p, idealDacOutput );
   sndrResult( iInputbin ) = adcDynamicPerformanceMetrics.sndr;
 
 end
