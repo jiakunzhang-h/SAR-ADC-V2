@@ -1,7 +1,7 @@
 function adcDynamicPerformanceMetrics = processAdcData( p, samples, conversionResult )
 
   %% delete DC component
-
+  
   fftSample = conversionResult - mean( conversionResult );
 
   %% calculate FFT
@@ -27,12 +27,12 @@ function adcDynamicPerformanceMetrics = processAdcData( p, samples, conversionRe
   %% normalize spectrum for display
 
   fullScale = 2 .^ ( p.adcResolution - 1 );
-  spectrumNormalized =spectrumSingle / ( p.fftLen / 2 ) / fullScale;
+  spectrumNormalized =spectrumSingle / ( p.fftLen / 2 ) /;
+
 
   %% convert spectrum to dB
 
-  spectrumDb =dbv( spectrumNormalized );
-
+  spectrumDb = dbv( spectrumSingle );
   %% store results
 
   adcDynamicPerformanceMetrics.sndr = sndr;

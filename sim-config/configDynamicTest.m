@@ -2,7 +2,7 @@ function p = configDynamicTest
 
   %% basic specification
 
-  p.adcResolution = 8;
+  p.adcResolution = 12;
   p.fftLen = 1024;
   p.Vref = 1.2;
   p.fs = 10e6;
