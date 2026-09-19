@@ -1,6 +1,6 @@
 function samples = genSamples( p )
 
-  %% use genInputFrequency function 
+  %% use genInputFrequency function
 
   [toneBin, inputFrequency] = genInputFrequency( p );
 

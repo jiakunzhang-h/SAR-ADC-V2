@@ -16,7 +16,7 @@ function p = configDynamicTest
   p.numMonteCarlo = 1000;
 
   %% code density test specification
-  
+
   p.numOfEachCode = 30;
 
   %% CDAC specification
@@ -24,7 +24,7 @@ function p = configDynamicTest
   p.smallestCap = 50e-15;
   p.numOfSmallestCap = 1;
   p.unitCap = p.smallestCap * p.numOfSmallestCap;
-  p.mismatchStd = 0;
+  p.mismatchStd = 0.05;
   p.capPar = 0;
   p.capParMain = 0;
   p.capParSub = 0;

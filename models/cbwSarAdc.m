@@ -13,7 +13,7 @@ function conversionResult = cbwSarAdc( sample, p, capArray )
   %% inject thermal noise
 
   sample = sample + thermalNoise;
-  
+
   %% binary search
 
   for iCycle = 1 : p.adcResolution

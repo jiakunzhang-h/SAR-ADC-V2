@@ -21,13 +21,13 @@ samples = genRampSamples( p );
 
 %% generate CDAC array
 
-capArray = genCbwCdac( p );
+capArray = genSbwCdac( p );
 
 %% run simulation
 
 for iSample = 1 : numTotalSamples
   sample = samples.data( iSample );
-  conversionResult( iSample, : ) = cbwSarAdc( sample, p, capArray );
+  conversionResult( iSample, : ) = sbwSarAdc( sample, p, capArray );
   idealDacOutput( iSample ) = idealDAC( conversionResult( iSample, : ) );
 end
 
@@ -41,9 +41,9 @@ adcStaticPerformanceMetrics = processAdcHistogramData( p, idealDacOutput );
 
 %% export plots
 
-drawingDnl = 'drawing/cbw-adc-dnl-histogram-method.png';
+drawingDnl = 'drawing/sbw-adc-dnl-histogram-method.png';
 exportgraphics( dnlObj, drawingDnl );
-drawingInl = 'drawing/cbw-adc-inl-histogram-method.png';
+drawingInl = 'drawing/sbw-adc-inl-histogram-method.png';
 exportgraphics( inlObj, drawingInl );
 
 %% process simulation data with definition
@@ -56,9 +56,9 @@ conversionalAdcStaticPerformanceMetrics = ConventionalProcessAdcStaticData( p, s
 
 %% export plots
 
-drawingDnlConversional = 'drawing/cbw-adc-dnl-definition-method.png';
+drawingDnlConversional = 'drawing/sbw-adc-dnl-definition-method.png';
 exportgraphics( dnlObjConversional, drawingDnlConversional );
-drawingInlConversional = 'drawing/cbw-adc-inl-definiton-method.png';
+drawingInlConversional = 'drawing/sbw-adc-inl-definiton-method.png';
 exportgraphics( inlObjConversional, drawingInlConversional );
 
 

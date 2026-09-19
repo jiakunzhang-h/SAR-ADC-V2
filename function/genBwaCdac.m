@@ -4,9 +4,9 @@ function capArray = genBwaCdac( p )
 
   weightCDAC = 2 .^ ( p.adcResolution / 2 - 1 : -1 : 0 );
 
-   %% include attenuation capacitor
+  %% include attenuation capacitor
 
-  weightArray = [ weightCDAC, 1, weightCDAC ];
+  weightArray = [weightCDAC, 1, weightCDAC];
 
   %% initialize capacitor array
 
@@ -16,9 +16,9 @@ function capArray = genBwaCdac( p )
 
   for iCap = 1 : length( weightArray )
     numUnitCap = weightArray( iCap );
-    capValueArray(iCap) = normrnd(numUnitCap * p.unitCap, sqrt( numUnitCap ) * p.mismatchStd * p.unitCap / p.numOfSmallestCap );
+    capValueArray( iCap ) = normrnd( numUnitCap * p.unitCap, sqrt( numUnitCap ) * p.mismatchStd * p.unitCap / p.numOfSmallestCap );
   end
-  
+
   %% store results
 
   capArray.main = capValueArray( 1 : p.adcResolution / 2 );

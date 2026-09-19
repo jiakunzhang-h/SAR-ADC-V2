@@ -44,5 +44,5 @@ obj = plotAdcDynamicSimulationResult( p, adcDynamicPerformanceMetrics );
 %% export plots
 
 drawing = 'drawing/cbw-adc-spectrum.png';
-exportgraphics(obj, drawing);
+exportgraphics( obj, drawing );
 

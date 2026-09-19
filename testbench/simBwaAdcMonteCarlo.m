@@ -18,9 +18,11 @@ enobMCResult = nan( p.numMonteCarlo, 1 );
 samples = genSamples( p );
 
 %% Monte Carlo simulation
+
 parfor iMonteCarlo = 1 : p.numMonteCarlo
 
   %% load single simulation configuration and parameters
+
   conversionResult = nan( p.fftLen, p.adcResolution );
   idealDacOutput = nan( p.fftLen, 1 );
 

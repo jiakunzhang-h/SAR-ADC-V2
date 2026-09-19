@@ -10,8 +10,8 @@ function Vdac = sbwCdac( Vin, p, capArray, digitalWord )
 
   %% transform digital word to digtalWordMSB and digitalWordRest
 
-  digitalWordMSB = [ zeros( 1, iMsbWord - 1 ), ones( 1, p.adcResolution - iMsbWord + 1 ) ];
-  digitalWordRest = [ zeros( 1, iMsbWord - 1 ), digitalWord(iMsbWord + 1 : p.adcResolution ) ];
+  digitalWordMSB = [zeros( 1, iMsbWord - 1 ), ones( 1, p.adcResolution - iMsbWord + 1 )];
+  digitalWordRest = [zeros( 1, iMsbWord - 1 ), digitalWord(iMsbWord + 1 : p.adcResolution )];
 
   %% modeling preparation
 

@@ -1,6 +1,7 @@
 function mcObj = plotMonteCarlo(enobMCResult)
-  %% plot Monte Carlo result
 
+  %% plot Monte Carlo result
+  
   mcObj = figure;
   histogram( enobMCResult );
   meanEnob = mean( enobMCResult );

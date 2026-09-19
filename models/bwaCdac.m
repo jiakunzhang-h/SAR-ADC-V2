@@ -5,7 +5,7 @@ function Vdac = bwaCdac( Vin, p, capArray, digitalWord )
   capTotalMain = sum( capArray.main );
   capTotalSub = sum( capArray.sub );
 
-  %% calculate attenuation factor 
+  %% calculate attenuation factor
 
   AR = capArray.att / ( capTotalMain + capArray.att + p.capParMain );
   hSub = capArray.sub *  digitalWord( p.adcResolution / 2 + 1 : p.adcResolution ).' / ( capTotalSub + p.capParSub + capArray.att );
@@ -15,5 +15,5 @@ function Vdac = bwaCdac( Vin, p, capArray, digitalWord )
 
   H = hMain + AR * hSub;
   Vdac = - Vin + p.Vref * H;
-  
+
 end
