@@ -1,4 +1,4 @@
-function capArray = generateCDAC( p )
+function capArray = genCbwCdac( p )
 
   %% generate weight CDAC
 

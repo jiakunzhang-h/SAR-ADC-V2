@@ -26,20 +26,20 @@ parfor iMonteCarlo = 1 : p.numMonteCarlo
 
   %% generate CDAC array
 
-  capArray = generateCDAC( p );
+  capArray = genCbwCdac( p );
 
   %% run simulation
 
   for iSample = 1 : p.fftLen
     sample = samples.data( iSample );
-    conversionResult( iSample, : ) = cbwSarADC( sample, p, capArray );
+    conversionResult( iSample, : ) = cbwSarAdc( sample, p, capArray );
     idealDacOutput( iSample ) = idealDAC( conversionResult( iSample, : ) );
   end
 
   %% process simulation data
 
   adcDynamicPerformanceMetrics = processAdcData( p, samples, idealDacOutput );
-  enobMCResult( iMonteCarlo ) = adcDynamicPerformanceMetrics.enob ;
+  enobMCResult( iMonteCarlo ) = adcDynamicPerformanceMetrics.enob;
 end
 
 %% plot simulation results
@@ -48,6 +48,6 @@ mcObj = plotMonteCarlo( enobMCResult );
 
 %% export plots
 
-drawing = 'drawing/Monte Carlo ENOB Distribution.png';
+drawing = 'drawing/CBW Monte Carlo ENOB Distribution.png';
 exportgraphics( mcObj, drawing );
 

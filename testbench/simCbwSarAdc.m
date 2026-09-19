@@ -21,13 +21,13 @@ samples = genSamples( p );
 
 %% generate CDAC array
 
-capArray = generateCDAC( p );
+capArray = genCbwCdac( p );
 
 %% run simulation
 
 for iSample = 1 : p.fftLen
   sample = samples.data( iSample );
-  conversionResult( iSample, : ) = cbwSarADC( sample, p, capArray );
+  conversionResult( iSample, : ) = cbwSarAdc( sample, p, capArray );
   idealDacOutput( iSample ) = idealDAC( conversionResult( iSample, : ) );
 end
 
@@ -43,6 +43,6 @@ obj = plotAdcDynamicSimulationResult( p, adcDynamicPerformanceMetrics );
 
 %% export plots
 
-drawing = 'drawing/adc-spectrum.png';
+drawing = 'drawing/cbw-adc-spectrum.png';
 exportgraphics(obj, drawing);
 

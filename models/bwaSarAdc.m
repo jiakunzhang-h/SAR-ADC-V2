@@ -1,9 +1,19 @@
-function conversionResult = cbwSarADC( sample, p, capArray )
+function conversionResult = bwaSarAdc( sample, p, capArray )
 
   %% SAR logic initialization
 
   digitalWord = zeros( 1, p.adcResolution );
 
+  %% calculate thermal noise
+
+  capTotal = sum( capArray.main ) + sum( capArray.sub );
+  thermalNoiseStd = sqrt( 4.141947e-21 / capTotal );
+  thermalNoise = normrnd( 0, thermalNoiseStd );
+
+  %% inject thermal noise
+
+  sample = sample + thermalNoise;
+  
   %% binary search
 
   for iCycle = 1 : p.adcResolution
@@ -14,7 +24,7 @@ function conversionResult = cbwSarADC( sample, p, capArray )
 
     %% CDAC
 
-    vCompIn = cdac( sample, p, capArray, digitalWord );
+    vCompIn = bwaCdac( sample, p, capArray, digitalWord );
 
     %% Comparator
 
