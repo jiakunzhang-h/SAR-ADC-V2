@@ -2,11 +2,11 @@ function samples = genRampSamples( p )
 
   %% calculate LSB
 
-  LSB = p.Vref / 2 .^ p.adcResolution;
+  voltageLSB = p.Vref / 2 .^ p.adcResolution;
 
   %% calculate voltage step
 
-  voltStep = LSB / p.numOfEachCode;
+  voltStep = voltageLSB / p.numOfEachCode;
 
   %% calculate total numbers of samples
 
@@ -15,6 +15,6 @@ function samples = genRampSamples( p )
   %% generate input voltage
 
   sampleIndex = 0 : numSamples - 1;
-  samples.data = voltStep * sampleIndex ;
+  samples.data = voltStep * sampleIndex;
 
 end
