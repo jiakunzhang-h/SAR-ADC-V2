@@ -16,7 +16,7 @@ function capArray = genCbwCdac( p )
 
   for iCap = 1 : length( weightArray )
     numUnitCap = weightArray( iCap );
-    capArray(iCap) = normrnd( numUnitCap * p.unitCap, sqrt( numUnitCap ) * p.mismatchStd * p.unitCap / p.numOfSmallestCap );
+    capArray( iCap ) = normrnd( numUnitCap * p.unitCap, sqrt( numUnitCap ) * p.mismatchStd * p.unitCap / p.numOfSmallestCap );
   end
 
 end

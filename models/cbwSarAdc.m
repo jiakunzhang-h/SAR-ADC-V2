@@ -6,7 +6,7 @@ function conversionResult = cbwSarAdc( sample, p, capArray )
 
   %% calculate thermal noise
 
-  capTotal = sum(capArray);
+  capTotal = sum( capArray );
   thermalNoiseStd = sqrt( p.k * p.temperature / capTotal );
   thermalNoise = normrnd( 0, thermalNoiseStd );
 

@@ -6,7 +6,7 @@ function capArray = genSbwCdac( p )
 
   %% include dummy capacitor
 
-  weightArray = [ weightCDAC, 1, weightCDAC, 1 ];
+  weightArray = [weightCDAC, 1, weightCDAC, 1];
 
   %% initialize capacitor array
 

@@ -48,6 +48,6 @@ mcObj = plotMonteCarlo( enobMCResult );
 
 %% export plots
 
-drawing = 'drawing/SBW Monte Carlo ENOB Distribution.png';
+drawing = 'drawing/sbw-monte-carlo-enob-distribution.png';
 exportgraphics( mcObj, drawing );
 

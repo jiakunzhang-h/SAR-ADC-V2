@@ -3,7 +3,7 @@ function adcStaticPerformanceMetrics = processAdcHistogramData( p, conversionRes
   %% find actual hits of each code
 
   edges = -0.5 : 1 : 2 .^ p.adcResolution - 0.5;
-  codeCount = histcounts(conversionResult, edges);
+  codeCount = histcounts( conversionResult, edges );
 
   %% calculate DNL and INL
 

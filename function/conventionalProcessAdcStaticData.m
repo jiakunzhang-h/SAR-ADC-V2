@@ -1,4 +1,4 @@
-function adcStaticPerformanceMetrics = ConventionalProcessAdcStaticData( p, samples, conversionResult )
+function adcStaticPerformanceMetrics = conventionalProcessAdcStaticData( p, samples, conversionResult )
 
   %% calculate LSB
 

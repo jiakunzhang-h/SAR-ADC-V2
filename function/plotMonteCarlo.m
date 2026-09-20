@@ -1,4 +1,4 @@
-function mcObj = plotMonteCarlo(enobMCResult)
+function mcObj = plotMonteCarlo( enobMCResult )
 
   %% plot Monte Carlo result
 
@@ -8,7 +8,7 @@ function mcObj = plotMonteCarlo(enobMCResult)
   stdEnob = std( enobMCResult );
   xlabel( 'ENOB (bit)' );
   ylabel( 'Count' );
-  title( sprintf("Monte Carlo ENOB Distribution Mean = %.2f bit Std = %.2f bit", meanEnob, stdEnob) );
+  title( sprintf( "Monte Carlo ENOB Distribution Mean = %.2f bit Std = %.2f bit", meanEnob, stdEnob ) );
   grid on;
 
 end
