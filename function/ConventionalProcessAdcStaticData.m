@@ -8,7 +8,7 @@ function adcStaticPerformanceMetrics = ConventionalProcessAdcStaticData( p, samp
 
   transitionIndex = find( diff( conversionResult ) ~= 0 );
   transitionVoltage = ( samples.data( transitionIndex ) + samples.data( transitionIndex + 1 ) ) / 2;
-  
+
   %% calculate code width
 
   codeWidth = diff( transitionVoltage );

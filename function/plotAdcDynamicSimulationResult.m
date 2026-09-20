@@ -14,5 +14,5 @@ function obj = plotAdcDynamicSimulationResult( p, adcDynamicPerformanceMetrics )
 
   noiseFloor = - ( 6.02 * p.adcResolution + 1.76 ) - 10 * log10( p.fftLen / 2 );
   ylim( [ noiseFloor - 10, 5 ] );
-  
+
 end

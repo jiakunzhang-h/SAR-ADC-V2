@@ -45,20 +45,3 @@ drawingDnl = 'drawing/bwa-adc-dnl-histogram-method.png';
 exportgraphics( dnlObj, drawingDnl );
 drawingInl = 'drawing/bwa-adc-inl-histogram-method.png';
 exportgraphics( inlObj, drawingInl );
-
-%% process simulation data with definition
-
-conversionalAdcStaticPerformanceMetrics = ConventionalProcessAdcStaticData( p, samples, idealDacOutput );
-
-%% plot simulation results
-
-[dnlObjConversional, inlObjConversional] = plotAdcStaticSimulationResult( p, conversionalAdcStaticPerformanceMetrics );
-
-%% export plots
-
-drawingDnlConversional = 'drawing/bwa-adc-dnl-definition-method.png';
-exportgraphics( dnlObjConversional, drawingDnlConversional );
-drawingInlConversional = 'drawing/bwa-adc-inl-definiton-method.png';
-exportgraphics( inlObjConversional, drawingInlConversional );
-
-

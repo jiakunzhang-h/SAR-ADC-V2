@@ -46,19 +46,5 @@ exportgraphics( dnlObj, drawingDnl );
 drawingInl = 'drawing/sbw-adc-inl-histogram-method.png';
 exportgraphics( inlObj, drawingInl );
 
-%% process simulation data with definition
-
-conversionalAdcStaticPerformanceMetrics = ConventionalProcessAdcStaticData( p, samples, idealDacOutput );
-
-%% plot simulation results
-
-[dnlObjConversional, inlObjConversional] = plotAdcStaticSimulationResult( p, conversionalAdcStaticPerformanceMetrics );
-
-%% export plots
-
-drawingDnlConversional = 'drawing/sbw-adc-dnl-definition-method.png';
-exportgraphics( dnlObjConversional, drawingDnlConversional );
-drawingInlConversional = 'drawing/sbw-adc-inl-definiton-method.png';
-exportgraphics( inlObjConversional, drawingInlConversional );
 
 

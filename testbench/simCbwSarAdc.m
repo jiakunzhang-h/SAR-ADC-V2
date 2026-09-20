@@ -13,7 +13,6 @@ p = configDynamicTest();
 
 conversionResult = nan( p.fftLen, p.adcResolution );
 idealDacOutput = nan( p.fftLen, 1 );
-sndrResult = nan( p.lenInputSignal, 1 );
 
 %% generate samples
 
