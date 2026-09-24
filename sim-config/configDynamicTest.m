@@ -4,12 +4,13 @@ function p = configDynamicTest
 
   p.adcResolution = 12;
   p.fftLen = 16384;
-  p.Vref = 1.2;
+  p.vRef = 1.2;
   p.fs = 10e6;
   p.fin = [];
   p.testInputBin = [ 1, 7, 11, 31, 51, 103, 205, 307, 409 ];
   p.lenInputSignal = length( p.testInputBin );
-  p.VDD = 1.2;
+  p.vcm = 0.6;
+  p.inputAmplitude = 0.6;
   p.k = 1.380649e-23;   
   p.temperature = 300;  
 
@@ -19,17 +20,23 @@ function p = configDynamicTest
 
   %% code density test specification
 
-  p.numOfEachCode = 30;
+  p.samplesPerStair = 100;
+  p.rampOffset = p.vRef / 2 .^ p.adcResolution / 1000;
 
   %% CDAC specification
 
   p.smallestCap = 50e-15;
   p.numOfSmallestCap = 1;
   p.unitCap = p.smallestCap * p.numOfSmallestCap;
-  p.mismatchStd = 0;
+  p.mismatchStd = 0.01;
   p.capPar = 0;
+  p.mainArraySize = 5;
+  p.subArraySize = 7;
   p.capParMain = 0;
   p.capParSub = 0;
+  p.dacTopology = 'split-array_type-3';
+  p.matching = 'good';
+  p.bridgeCapWeight = 1;
   
   %% Comparator specification
 

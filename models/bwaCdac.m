@@ -8,12 +8,24 @@ function Vdac = bwaCdac( Vin, p, capArray, digitalWord )
   %% calculate attenuation factor
 
   AR = capArray.att / ( capTotalMain + capArray.att + p.capParMain );
-  hSub = capArray.sub * digitalWord( p.adcResolution / 2 + 1 : p.adcResolution ).' / ( capTotalSub + p.capParSub + capArray.att );
-  hMain = capArray.main * digitalWord( 1 : p.adcResolution / 2 ) .' / ( capTotalMain + p.capParMain + capArray.att );
+
+ %% calculate factors for different topologies
+
+  switch p.dacTopology
+    case 'split-array_type-1'
+      hSub = capArray.sub( 1 : end - 1 ) * digitalWord( p.mainArraySize + 1 : end ).' / ( capTotalSub + p.capParSub + capArray.att );
+      hMain = capArray.main * digitalWord( 1 : p.mainArraySize ) .' / ( capTotalMain + p.capParMain + capArray.att );
+    case 'split-array_type-2'
+      hSub = capArray.sub * digitalWord( p.mainArraySize + 1 : end ).' / ( capTotalSub + p.capParSub + capArray.att );
+      hMain = capArray.main( 1 : end - 1 ) * digitalWord( 1 : p.mainArraySize ) .' / ( capTotalMain + p.capParMain + capArray.att );
+    case 'split-array_type-3'
+      hSub = capArray.sub * digitalWord( p.mainArraySize + 1 : end ).' / ( capTotalSub + p.capParSub + capArray.att );
+      hMain = capArray.main * digitalWord( 1 : p.mainArraySize ) .' / ( capTotalMain + p.capParMain + capArray.att );
+  end
 
   %% calculate vdac
 
   H = hMain + AR * hSub;
-  Vdac = - Vin + p.Vref * H;
+  Vdac = - Vin + p.vRef * H;
 
 end

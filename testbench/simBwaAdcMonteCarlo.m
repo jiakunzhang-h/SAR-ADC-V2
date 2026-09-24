@@ -46,7 +46,7 @@ end
 
 %% plot simulation results
 
-mcObj = plotMonteCarlo( enobMCResult );
+mcObj = plotMonteCarlo( p, enobMCResult );
 
 %% export plots
 

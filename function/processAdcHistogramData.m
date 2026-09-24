@@ -7,7 +7,7 @@ function adcStaticPerformanceMetrics = processAdcHistogramData( p, conversionRes
 
   %% calculate DNL and INL
 
-  dnlResult = codeCount( : ) / p.numOfEachCode - 1;
+  dnlResult = codeCount( : ) / p.samplesPerStair - 1;
   inlResult = cumsum( dnlResult );
 
   %% save the result

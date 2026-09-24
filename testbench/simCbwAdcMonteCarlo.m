@@ -13,14 +13,15 @@ p = configDynamicTest();
 
 enobMCResult = nan( p.numMonteCarlo, 1 );
 
-%% generate samples
-
-samples = genSamples( p );
-
 %% Monte Carlo simulation
 parfor iMonteCarlo = 1 : p.numMonteCarlo
 
+  %% generate samples
+
+  samples = genSamples( p );
+
   %% load single simulation configuration and parameters
+
   conversionResult = nan( p.fftLen, p.adcResolution );
   idealDacOutput = nan( p.fftLen, 1 );
 
@@ -44,7 +45,7 @@ end
 
 %% plot simulation results
 
-mcObj = plotMonteCarlo( enobMCResult );
+mcObj = plotMonteCarlo( p, enobMCResult );
 
 %% export plots
 

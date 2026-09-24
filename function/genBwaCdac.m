@@ -1,28 +1,56 @@
 function capArray = genBwaCdac( p )
 
-  %% generate weight CDAC
+  %% choose topology
 
-  weightCDAC = 2 .^ ( p.adcResolution / 2 - 1 : -1 : 0 );
+  switch p.dacTopology
+    case 'split-array_type-1'
+      mainArrayExponent = p.mainArraySize-1 : -1 : 0;
+      subArrayExponent = [p.subArraySize-1 : -1 : 0, 0];
+      mainArrayCapWeight = 2 .^ mainArrayExponent;
+      subArrayCapWeight = 2 .^ subArrayExponent;
+      capWeight = [mainArrayCapWeight, subArrayCapWeight, p.bridgeCapWeight];
+    case 'split-array_type-2'
+      mainArrayExponent = [p.mainArraySize-1 : -1 : 0, 0];
+      subArrayExponent = p.subArraySize-1 : -1 : 0;
+      mainArrayCapWeight = 2 .^ mainArrayExponent;
+      subArrayCapWeight = 2 .^ subArrayExponent;
+      capWeight = [mainArrayCapWeight, subArrayCapWeight, p.bridgeCapWeight];
+    case 'split-array_type-3'
+      mainArrayExponent = p.mainArraySize-1 : -1 : 0;
+      subArrayExponent = p.subArraySize-1 : -1 : 0;
+      mainArrayCapWeight = 2 .^ mainArrayExponent;
+      subArrayCapWeight = 2 .^ subArrayExponent;
+      capWeight = [mainArrayCapWeight, subArrayCapWeight, p.bridgeCapWeight];
+    otherwise
+      warning( 'DAC synthesis failed! Please check the p.dacTopology.' )
+  end
 
-  %% include attenuation capacitor
+  %% choose matching
 
-  weightArray = [weightCDAC, 1, weightCDAC];
-
-  %% initialize capacitor array
-
-  capValueArray = nan( size( weightArray ) );
-
-  %% actual capacitor array
-
-  for iCap = 1 : length( weightArray )
-    numUnitCap = weightArray( iCap );
-    capValueArray( iCap ) = normrnd( numUnitCap * p.unitCap, sqrt( numUnitCap ) * p.mismatchStd * p.unitCap / p.numOfSmallestCap );
+  switch p.matching
+    case 'good'
+      caps = p.unitCap * normrnd( capWeight, p.mismatchStd .* sqrt( capWeight ) );
+    case 'bad'
+      caps = p.unitCap * normrnd( capWeight, p.mismatchStd .* capWeight );
+    otherwise
+      warning( 'Unkown matching flag! Matching flag must be set.' )
   end
 
   %% store results
 
-  capArray.main = capValueArray( 1 : p.adcResolution / 2 );
-  capArray.sub = capValueArray( p.adcResolution / 2 + 2 : end );
-  capArray.att = capValueArray( p.adcResolution / 2 + 1 );
+  switch p.dacTopology
+    case 'split-array_type-1'
+      capArray.main = caps( 1 : p.mainArraySize );
+      capArray.sub = caps( p.mainArraySize + 1 : end - 1 );
+      capArray.att = caps( end );
+    case 'split-array_type-2'
+      capArray.main = caps( 1 : p.mainArraySize + 1 );
+      capArray.sub = caps( p.mainArraySize + 2 : end - 1 );
+      capArray.att = caps( end );
+    case 'split-array_type-3'
+      capArray.main = caps( 1 : p.mainArraySize );
+      capArray.sub = caps( p.mainArraySize + 1 : end - 1 );
+      capArray.att = caps( end );
+  end
 
 end
