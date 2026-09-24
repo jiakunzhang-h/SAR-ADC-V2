@@ -13,7 +13,8 @@ p = configDynamicTest();
 
 conversionResult = nan( p.fftLen, p.adcResolution );
 idealDacOutput = nan( p.fftLen, 1 );
- 
+cdacTrace = nan( p.fftLen, p.adcResolution );
+
 %% generate samples
 
 samples = genSamples( p );
@@ -26,7 +27,7 @@ capArray = genBwaCdac( p );
 
 for iSample = 1 : p.fftLen
   sample = samples.data( iSample );
-  conversionResult( iSample, : ) = bwaSarAdc( sample, p, capArray );
+  [conversionResult( iSample, : ), cdacTrace( iSample, : )] = bwaSarAdc( sample, p, capArray );
   idealDacOutput( iSample ) = idealDAC( conversionResult( iSample, : ) );
 end
 
@@ -40,8 +41,16 @@ disp( adcDynamicPerformanceMetrics.sndr );
 
 obj = plotAdcDynamicSimulationResult( p, adcDynamicPerformanceMetrics );
 
+%% plot cdac trace 
+
+randomIndex = randi( p.fftLen );
+randomTrace = cdacTrace( randomIndex, : );
+randomSample = samples.data( randomIndex );
+traceObj = plotCdacTrace( p, randomTrace, randomSample );
+
 %% export plots
 
-drawing = 'drawing/bwa-adc-spectrum.png';
-exportgraphics( obj, drawing );
-
+drawingSpectrum = 'drawing/bwa-adc-spectrum.png';
+exportgraphics( obj, drawingSpectrum );
+drawingTrace = 'drawing/bwa-cdac-conversion.png';
+exportgraphics( traceObj, drawingTrace);

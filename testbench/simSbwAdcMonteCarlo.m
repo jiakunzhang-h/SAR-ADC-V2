@@ -11,18 +11,22 @@ p = configDynamicTest();
 
 %% allocate storage for simulation data
 
-enobMCResult = nan( p.numMonteCarlo, 1 );
-
-%% generate samples
-
-samples = genSamples( p );
+idealDacOutput = nan( p.fftLen, p.numMonteCarlo );
+toneBin = nan( 1, p.numMonteCarlo );
 
 %% Monte Carlo simulation
+
 parfor iMonteCarlo = 1 : p.numMonteCarlo
 
   %% load single simulation configuration and parameters
+
   conversionResult = nan( p.fftLen, p.adcResolution );
-  idealDacOutput = nan( p.fftLen, 1 );
+  singleIdealDacOutput = nan( p.fftLen, 1 );
+
+  %% generate samples
+
+  samples = genSamples( p );
+  toneBin( iMonteCarlo ) = samples.toneBin;
 
   %% generate CDAC array
 
@@ -33,18 +37,20 @@ parfor iMonteCarlo = 1 : p.numMonteCarlo
   for iSample = 1 : p.fftLen
     sample = samples.data( iSample );
     conversionResult( iSample, : ) = sbwSarAdc( sample, p, capArray );
-    idealDacOutput( iSample ) = idealDAC( conversionResult( iSample, : ) );
+    singleIdealDacOutput( iSample ) = idealDAC( conversionResult( iSample, : ) );
   end
 
-  %% process simulation data
+  idealDacOutput( : , iMonteCarlo ) = singleIdealDacOutput;
 
-  adcDynamicPerformanceMetrics = processAdcData( p, samples, idealDacOutput );
-  enobMCResult( iMonteCarlo ) = adcDynamicPerformanceMetrics.enob;
 end
+
+%% process simulation data
+
+adcDynamicPerformanceMetrics = processAdcMonteCarloData( p, toneBin, idealDacOutput );
 
 %% plot simulation results
 
-mcObj = plotMonteCarlo( p, enobMCResult );
+mcObj = plotMonteCarlo( p, adcDynamicPerformanceMetrics.enobResult );
 
 %% export plots
 

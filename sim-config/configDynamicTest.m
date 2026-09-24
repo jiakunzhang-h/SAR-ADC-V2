@@ -22,6 +22,11 @@ function p = configDynamicTest
   p.samplesPerStair = 100;
   p.rampOffset = p.vRef / 2 .^ p.adcResolution / 1000;
 
+  %% transition test spcification
+
+  p.confidence = 0.99;
+  p.dnlPrecision = 0.1;
+
   %% CDAC specification
 
   p.smallestCap = 50e-15;

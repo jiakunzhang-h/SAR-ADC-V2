@@ -1,8 +1,9 @@
-function conversionResult = bwaSarAdc( sample, p, capArray )
+function [conversionResult, cdacTrace] = bwaSarAdc( sample, p, capArray )
 
   %% SAR logic initialization
 
   digitalWord = zeros( 1, p.adcResolution );
+  cdacTrace = nan( 1, p.adcResolution );
 
   %% calculate thermal noise
 
@@ -25,6 +26,7 @@ function conversionResult = bwaSarAdc( sample, p, capArray )
     %% CDAC
 
     vCompIn = bwaCdac( sample, p, capArray, digitalWord );
+    cdacTrace( iCycle ) = vCompIn + sample;
 
     %% Comparator
 
